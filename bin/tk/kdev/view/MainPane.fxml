@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #191919;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tk.kdev.controller.MainPaneController">
+   <top>
+      <Label fx:id="titleLabel" text="Currency Avg" textFill="WHITE" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Georgia Bold" size="50.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+   </top>
+   <center>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Currency:" textFill="WHITE" />
+            <ChoiceBox fx:id="currencyList" prefWidth="150.0" />
+            <Label text="From:" textFill="WHITE" />
+            <DatePicker fx:id="fromDate" />
+            <Label text="To:" textFill="WHITE" />
+            <DatePicker fx:id="toDate" />
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <Button fx:id="submitButton" mnemonicParsing="false" text="Submit" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>
