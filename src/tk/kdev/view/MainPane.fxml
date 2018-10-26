@@ -25,7 +25,7 @@
 					<children>
 						<AnchorPane prefHeight="200.0" prefWidth="200.0">
 							<children>
-								<Label text="Symbol" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+								<Label text="Currency" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
 									<graphic>
 										<ChoiceBox fx:id="currencyList" prefWidth="150.0" />
 									</graphic>
@@ -34,7 +34,7 @@
 						</AnchorPane>
 						<AnchorPane prefHeight="200.0" prefWidth="200.0">
 							<children>
-								<Label text="Date From" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+								<Label text="Start date" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
 									<graphic>
 										<DatePicker fx:id="fromDate" prefWidth="150.0" />
 									</graphic>
@@ -43,7 +43,7 @@
 						</AnchorPane>
 						<AnchorPane prefHeight="200.0" prefWidth="200.0">
 							<children>
-								<Label text="Date To" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+								<Label text="End date" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
 									<graphic>
 										<DatePicker fx:id="toDate" prefWidth="150.0" />
 									</graphic>
