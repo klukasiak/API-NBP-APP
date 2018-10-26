@@ -5,40 +5,84 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #191919;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tk.kdev.controller.MainPaneController">
-   <top>
-      <Label fx:id="titleLabel" text="Currency Avg" textFill="WHITE" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="Georgia Bold" size="50.0" />
-         </font>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Label>
-   </top>
-   <center>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Currency:" textFill="WHITE" />
-            <ChoiceBox fx:id="currencyList" prefWidth="150.0" />
-            <Label text="From:" textFill="WHITE" />
-            <DatePicker fx:id="fromDate" />
-            <Label text="To:" textFill="WHITE" />
-            <DatePicker fx:id="toDate" />
-            <Label fx:id="answer" minWidth="-Infinity" prefHeight="0.0" prefWidth="120.0" textFill="WHITE" />
-            <Label fx:id="secondAnswer" textFill="WHITE" />
-         </children>
-      </VBox>
-   </center>
-   <bottom>
-      <Button fx:id="submitButton" mnemonicParsing="false" text="Submit" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="20.0" />
-         </BorderPane.margin>
-      </Button>
-   </bottom>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tk.kdev.controller.MainPaneController">
+	<children>
+		<BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<top>
+				<Label text="Currency app" BorderPane.alignment="CENTER">
+					<font>
+						<Font name="Padauk Bold" size="64.0" />
+					</font>
+				</Label>
+			</top>
+			<center>
+				<VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+					<children>
+						<AnchorPane prefHeight="200.0" prefWidth="200.0">
+							<children>
+								<Label text="Symbol" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+									<graphic>
+										<ChoiceBox fx:id="currencyList" prefWidth="150.0" />
+									</graphic>
+								</Label>
+							</children>
+						</AnchorPane>
+						<AnchorPane prefHeight="200.0" prefWidth="200.0">
+							<children>
+								<Label text="Date From" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+									<graphic>
+										<DatePicker fx:id="fromDate" prefWidth="150.0" />
+									</graphic>
+								</Label>
+							</children>
+						</AnchorPane>
+						<AnchorPane prefHeight="200.0" prefWidth="200.0">
+							<children>
+								<Label text="Date To" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+									<graphic>
+										<DatePicker fx:id="toDate" prefWidth="150.0" />
+									</graphic>
+								</Label>
+							</children>
+						</AnchorPane>
+						<AnchorPane prefHeight="200.0" prefWidth="200.0">
+							<children>
+								<Button fx:id="submitButton" mnemonicParsing="false" text="Submit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+							</children>
+						</AnchorPane>
+					</children>
+					<BorderPane.margin>
+						<Insets left="80.0" right="80.0" />
+					</BorderPane.margin>
+				</VBox>
+			</center>
+			<bottom>
+				<AnchorPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+					<children>
+						<VBox alignment="CENTER" prefHeight="150.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+							<children>
+								<Label fx:id="answer">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+								<Label fx:id="secondAnswer">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+								<Label fx:id="errorMessage" textFill="RED">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+							</children>
+						</VBox>
+					</children>
+				</AnchorPane>
+			</bottom>
+		</BorderPane>
+	</children>
+</AnchorPane>

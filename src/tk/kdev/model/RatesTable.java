@@ -2,7 +2,7 @@ package tk.kdev.model;
 
 import java.util.List;
 
-public class DataObject {
+public class RatesTable {
 	private String table;
 	private String currency;
 	private String code;
