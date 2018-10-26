@@ -16,13 +16,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import tk.kdev.model.DataObject;
+import tk.kdev.model.RatesTable;
 import tk.kdev.model.Rate;
 
 public class MainPaneController implements Initializable {
-
-	@FXML
-	private Label titleLabel;
 
 	@FXML
 	private ChoiceBox<String> currencyList;
@@ -35,12 +32,15 @@ public class MainPaneController implements Initializable {
 
 	@FXML
 	private Button submitButton;
-	
+
 	@FXML
 	private Label answer;
-	
+
 	@FXML
 	private Label secondAnswer;
+	
+	@FXML
+	private Label errorMessage;
 
 	private String fromDateString;
 
@@ -48,47 +48,49 @@ public class MainPaneController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		currencyList.getItems().addAll("EUR", "USD", "GBP");
+		errorMessage.setText("");
+		currencyList.getItems().addAll("EUR", "USD", "GBP", "AUD", "CAD", "HUF", "CHF", "JPY", "CZK", "DKK", "NOK", "SEK", "XDR");
 		String pattern = "yyyy-MM-dd";
 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent arg0) {
-				toDateString = toDate.getValue().format(DateTimeFormatter.ofPattern(pattern));
-				fromDateString = fromDate.getValue().format(DateTimeFormatter.ofPattern(pattern));
-				System.out.println(toDateString);
-				System.out.println(fromDateString);
-				String url = "http://api.nbp.pl/api/exchangerates/rates/c/" + currencyList.getValue() + "/" + fromDateString + "/" + toDateString + "/?format=json";
+				errorMessage.setText("");
 				try {
+					toDateString = toDate.getValue().format(DateTimeFormatter.ofPattern(pattern));
+					fromDateString = fromDate.getValue().format(DateTimeFormatter.ofPattern(pattern));
+					String url = "http://api.nbp.pl/api/exchangerates/rates/c/" + currencyList.getValue() + "/"
+							+ fromDateString + "/" + toDateString + "/?format=json";
 					String json = readUrl(url);
-					
 					Gson gson = new Gson();
-					DataObject dataObject = gson.fromJson(json, DataObject.class);
-					
+					RatesTable ratesTable = gson.fromJson(json, RatesTable.class);
+
 					float sum = 0;
 					float average = 0;
 					double deviation = 0;
-					for (Rate rate : dataObject.getRates()) {
+
+					for (Rate rate : ratesTable.getRates()) {
 						sum += Float.parseFloat(rate.getBid());
 						average += Float.parseFloat(rate.getAsk());
 					}
-					average /= dataObject.getRates().size();
-					System.out.println(average);
-					for (Rate rate : dataObject.getRates()) {
+
+					average /= ratesTable.getRates().size();
+
+					for (Rate rate : ratesTable.getRates()) {
 						deviation += Math.pow(Float.parseFloat(rate.getAsk()) - average, 2);
 					}
-					deviation = Math.sqrt(deviation/dataObject.getRates().size());
-					System.out.println(sum/dataObject.getRates().size());
-					String sumText = String.valueOf(sum/dataObject.getRates().size());
+
+					deviation = Math.sqrt(deviation / ratesTable.getRates().size());
+
+					String sumText = String.valueOf(sum / ratesTable.getRates().size());
 					String deviationText = String.valueOf(deviation);
-					answer.setText(sumText.substring(0,6));
-					secondAnswer.setText(deviationText.substring(0,6));
+					answer.setText("Average Bid: " + sumText.substring(0, 6));
+					secondAnswer.setText("Standard Ask Deviation: " + deviationText.substring(0, 6));
 				} catch (Exception e) {
+					errorMessage.setText("Error");
 					System.out.println(e);
 				}
-				
 			}
-
 		});
 	}
 
