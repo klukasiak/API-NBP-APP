@@ -16,6 +16,7 @@ public class MainApp extends Application {
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.setTitle("Average Currency App");
+			stage.setResizable(false);
 			stage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
