@@ -3,7 +3,8 @@ package tk.kdev.model;
 public class Rate {
 	private String no;
 	private String effectiveDate;
-	private String mid;
+	private String bid;
+	private String ask;
 	public String getNo() {
 		return no;
 	}
@@ -16,15 +17,21 @@ public class Rate {
 	public void setEffectiveDate(String effectiveDate) {
 		this.effectiveDate = effectiveDate;
 	}
-	public String getMid() {
-		return mid;
+	public String getBid() {
+		return bid;
 	}
-	public void setMid(String mid) {
-		this.mid = mid;
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+	public String getAsk() {
+		return ask;
+	}
+	public void setAsk(String ask) {
+		this.ask = ask;
 	}
 	@Override
 	public String toString() {
-		return "Currency [no=" + no + ", effectiveDate=" + effectiveDate + ", mid=" + mid + "]";
+		return "Rate [no=" + no + ", effectiveDate=" + effectiveDate + ", bid=" + bid + ", ask=" + ask + "]";
 	}
 	
 	

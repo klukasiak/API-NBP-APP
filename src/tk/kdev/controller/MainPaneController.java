@@ -35,6 +35,12 @@ public class MainPaneController implements Initializable {
 
 	@FXML
 	private Button submitButton;
+	
+	@FXML
+	private Label answer;
+	
+	@FXML
+	private Label secondAnswer;
 
 	private String fromDateString;
 
@@ -50,22 +56,37 @@ public class MainPaneController implements Initializable {
 			public void handle(ActionEvent arg0) {
 				toDateString = toDate.getValue().format(DateTimeFormatter.ofPattern(pattern));
 				fromDateString = fromDate.getValue().format(DateTimeFormatter.ofPattern(pattern));
-
 				System.out.println(toDateString);
 				System.out.println(fromDateString);
-				String url = "http://api.nbp.pl/api/exchangerates/rates/a/" + currencyList.getValue() + "/" + fromDateString + "/" + toDateString + "/?format=json";
+				String url = "http://api.nbp.pl/api/exchangerates/rates/c/" + currencyList.getValue() + "/" + fromDateString + "/" + toDateString + "/?format=json";
 				try {
 					String json = readUrl(url);
 					
 					Gson gson = new Gson();
 					DataObject dataObject = gson.fromJson(json, DataObject.class);
 					
-					System.out.println(dataObject.getTable());
-					for (Rate rate : dataObject.getRates())
-						System.out.println("    " + rate.getMid());
+					float sum = 0;
+					float average = 0;
+					double deviation = 0;
+					for (Rate rate : dataObject.getRates()) {
+						sum += Float.parseFloat(rate.getBid());
+						average += Float.parseFloat(rate.getAsk());
+					}
+					average /= dataObject.getRates().size();
+					System.out.println(average);
+					for (Rate rate : dataObject.getRates()) {
+						deviation += Math.pow(Float.parseFloat(rate.getAsk()) - average, 2);
+					}
+					deviation = Math.sqrt(deviation/dataObject.getRates().size());
+					System.out.println(sum/dataObject.getRates().size());
+					String sumText = String.valueOf(sum/dataObject.getRates().size());
+					String deviationText = String.valueOf(deviation);
+					answer.setText(sumText.substring(0,6));
+					secondAnswer.setText(deviationText.substring(0,6));
 				} catch (Exception e) {
 					System.out.println(e);
 				}
+				
 			}
 
 		});

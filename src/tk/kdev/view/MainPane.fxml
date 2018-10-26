@@ -29,6 +29,8 @@
             <DatePicker fx:id="fromDate" />
             <Label text="To:" textFill="WHITE" />
             <DatePicker fx:id="toDate" />
+            <Label fx:id="answer" minWidth="-Infinity" prefHeight="0.0" prefWidth="120.0" textFill="WHITE" />
+            <Label fx:id="secondAnswer" textFill="WHITE" />
          </children>
       </VBox>
    </center>
