@@ -14,4 +14,4 @@
 [Link to NBP API](http://api.nbp.pl/en.html) 
 
 Screenshot:
-![Screenshot](https://i.imgur.com/J1kKzIdl.png)
+![Screenshot](http://imgur.com/fcYzCxrl.png)
